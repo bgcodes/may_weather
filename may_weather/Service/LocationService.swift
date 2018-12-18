@@ -12,12 +12,12 @@ import CoreLocation
 class LocationService {
 
     static let baseURL = "https://api.darksky.net/forecast/965b5e1f6514ee3a66017c215d128973/"
-    static let flags = "?exclude=monthly,currently,minutely,hourly,alerts,offset,flags&units=si"
+    static let flags = "?exclude=monthly,minutely,hourly,alerts,offset,flags&units=si"
     
     static func getDataFromAPI(cityName: String, completion: @escaping (Weather) -> Void) {
         getCoordinatesFromLocationName(locationName: cityName) { (coords) in
             let JSON_URL = baseURL + coords + flags
-            print("getDataFromAPI() -> JSON_URL: ",JSON_URL)
+            //print("getDataFromAPI() -> JSON_URL: ",JSON_URL)
             guard let url = URL(string: JSON_URL) else {return}
             
             URLSession.shared.dataTask(with: url) { (data, response, err) in

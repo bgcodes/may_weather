@@ -14,12 +14,18 @@ struct Weather: Codable {
     let latitude: Double
     let longitude: Double
     let daily: WeatherData
+    let currently: Currently
+    
+    struct Currently: Codable {
+        let temperature: Double
+    }
     
     struct WeatherData: Codable {
         let data: [WeatherDayData]
     }
     
     struct WeatherDayData: Codable {
+        let time: Int32
         let summary: String
         let icon: String
         let precipProbability: Double

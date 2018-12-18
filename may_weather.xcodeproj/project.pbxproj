@@ -12,6 +12,11 @@
 		C593EFBB21B0B21D005448F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C593EFBA21B0B21D005448F4 /* Assets.xcassets */; };
 		C593EFCB21B0B27D005448F4 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = C593EFCA21B0B27D005448F4 /* Weather.swift */; };
 		C5C4323221C879CA00A2482B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5C4323121C879CA00A2482B /* Main.storyboard */; };
+		C5DAD3F421C9283F0030A572 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DAD3F321C9283F0030A572 /* TableViewCell.swift */; };
+		C5DAD3F621C928520030A572 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DAD3F521C928520030A572 /* TableView.swift */; };
+		C5DAD3FF21C953EA0030A572 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DAD3FE21C953EA0030A572 /* SearchView.swift */; };
+		C5DAD40121C954160030A572 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DAD40021C954160030A572 /* SearchCell.swift */; };
+		C5DAD40621C994A00030A572 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DAD40521C994A00030A572 /* DateParser.swift */; };
 		C5DF312D21B2B70C0049C362 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DF312C21B2B70C0049C362 /* LocationService.swift */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +28,11 @@
 		C593EFBF21B0B21D005448F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C593EFCA21B0B27D005448F4 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		C5C4323121C879CA00A2482B /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		C5DAD3F321C9283F0030A572 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		C5DAD3F521C928520030A572 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
+		C5DAD3FE21C953EA0030A572 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		C5DAD40021C954160030A572 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
+		C5DAD40521C994A00030A572 /* DateParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateParser.swift; sourceTree = "<group>"; };
 		C5DF312C21B2B70C0049C362 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,10 +93,38 @@
 			path = Layouts;
 			sourceTree = "<group>";
 		};
-		C5DF312B21B2B6F90049C362 /* Controller */ = {
+		C5DAD3F721C9443A0030A572 /* Single */ = {
 			isa = PBXGroup;
 			children = (
 				C593EFB521B0B21A005448F4 /* SingleView.swift */,
+			);
+			path = Single;
+			sourceTree = "<group>";
+		};
+		C5DAD3F821C944440030A572 /* Table */ = {
+			isa = PBXGroup;
+			children = (
+				C5DAD3F521C928520030A572 /* TableView.swift */,
+				C5DAD3F321C9283F0030A572 /* TableViewCell.swift */,
+			);
+			path = Table;
+			sourceTree = "<group>";
+		};
+		C5DAD3F921C9444C0030A572 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				C5DAD3FE21C953EA0030A572 /* SearchView.swift */,
+				C5DAD40021C954160030A572 /* SearchCell.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		C5DF312B21B2B6F90049C362 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C5DAD3F921C9444C0030A572 /* Search */,
+				C5DAD3F821C944440030A572 /* Table */,
+				C5DAD3F721C9443A0030A572 /* Single */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -95,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				C5DF312C21B2B70C0049C362 /* LocationService.swift */,
+				C5DAD40521C994A00030A572 /* DateParser.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -169,7 +208,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5DAD3F421C9283F0030A572 /* TableViewCell.swift in Sources */,
+				C5DAD40121C954160030A572 /* SearchCell.swift in Sources */,
+				C5DAD3F621C928520030A572 /* TableView.swift in Sources */,
+				C5DAD40621C994A00030A572 /* DateParser.swift in Sources */,
 				C593EFB621B0B21A005448F4 /* SingleView.swift in Sources */,
+				C5DAD3FF21C953EA0030A572 /* SearchView.swift in Sources */,
 				C593EFB421B0B21A005448F4 /* AppDelegate.swift in Sources */,
 				C593EFCB21B0B27D005448F4 /* Weather.swift in Sources */,
 				C5DF312D21B2B70C0049C362 /* LocationService.swift in Sources */,

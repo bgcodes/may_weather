@@ -26,46 +26,35 @@ class SingleView: UIViewController {
     @IBOutlet weak var NextButton: UIButton!
     @IBOutlet weak var PreviousButton: UIButton!
     
-    private var weather: Weather?
-    private var dayIndex: Int?
-    private var dayRange: (ClosedRange<Int>)?
+    static var weather: Weather?
+    static var dayIndex: Int?
+    static var dayRange: (ClosedRange<Int>)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         PreviousButton.setTitleColor(UIColor.gray, for: .disabled)
         NextButton.setTitleColor(UIColor.gray, for: .disabled)
-        LocationService.getDataFromAPI(cityName: "Kraków", completion: self.updateWeather)
     }
-    
-    func updateWeather(weather: Weather){
+
+    static func setWeather(weather: Weather){
         print("Received data for city called: ", weather.locationName ?? "")
-        print("Number of days loaded: ",weather.daily.data.count)
-        
+
         if (weather.daily.data.count > 0) {
             self.weather = weather
             self.dayRange = 0...(weather.daily.data.count - 1)
             self.dayIndex = 0
-
-            self.updateView()
-        }
-        else{
+        } else{
             print("API_ERROR: less than 0 days")
         }
     }
     
     func updateView() {
-        if self.dayRange!.contains(self.dayIndex!){
+        if SingleView.dayRange!.contains(SingleView.dayIndex!){
             DispatchQueue.main.async {
-                // TODO: change that manual Date into correct timestamp translating
-                let currentDate = Date()
-                let activeDay = Calendar.current.date(byAdding: .day, value: self.dayIndex!, to: currentDate)
-                
-                let today = self.weather?.daily.data[self.dayIndex!]
-                self.TownLabel.text = self.weather?.locationName
-                
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "dd-MM-yyyy"
-                self.DayLabel.text = dateFormatter.string(from: activeDay!)
+                let today = SingleView.weather?.daily.data[SingleView.dayIndex!]
+                self.TownLabel.text = SingleView.weather?.locationName
+            
+                self.DayLabel.text = DateParser.parseDate(unixTimestamp: (today?.time)!)
                 
                 self.IconImageView.image = UIImage(named: (today?.icon)!)
                 self.MinTemperatureLabel.text = String(format:"%.1f C", (today?.temperatureMin)!)
@@ -77,8 +66,8 @@ class SingleView: UIViewController {
                 self.WindSpeedLabel.text = String(format:"%.2f m/s", (today?.windSpeed)!)
                 self.WindDirLabel.text = String(format:"%.2f", (today?.windBearing)!)
                 
-                self.PreviousButton.isEnabled = (1...(self.dayRange!.upperBound)).contains(self.dayIndex!)
-                self.NextButton.isEnabled = (0..<(self.dayRange!.upperBound)).contains(self.dayIndex!)
+                self.PreviousButton.isEnabled = (1...(SingleView.dayRange!.upperBound)).contains(SingleView.dayIndex!)
+                self.NextButton.isEnabled = (0..<(SingleView.dayRange!.upperBound)).contains(SingleView.dayIndex!)
                 
             }
         }
@@ -86,13 +75,13 @@ class SingleView: UIViewController {
     
     @IBAction func prevButtonClicked(_ sender: UIButton) {
         print("PrevButton()")
-        self.dayIndex = self.dayIndex! - 1
+        SingleView.dayIndex = SingleView.dayIndex! - 1
         self.updateView()
     }
     
     @IBAction func nextButtonClicked(_ sender: UIButton) {
         print("NextButton()")
-        self.dayIndex = self.dayIndex! + 1
+        SingleView.dayIndex = SingleView.dayIndex! + 1
         self.updateView()
     }
 }
