@@ -34,6 +34,14 @@ class SingleView: UIViewController {
         super.viewDidLoad()
         PreviousButton.setTitleColor(UIColor.gray, for: .disabled)
         NextButton.setTitleColor(UIColor.gray, for: .disabled)
+    
+        let mapNavigateButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(navigateToMapView(_:)))
+        navigationItem.rightBarButtonItem = mapNavigateButton
+    }
+    
+    @objc func navigateToMapView(_ sender: Any){
+        MapViewController.changeLocation(latitude: (SingleView.weather?.latitude)!, longitude: (SingleView.weather?.longitude)!, locationName: (SingleView.weather?.locationName)!)
+        performSegue(withIdentifier: "SegueSingleToMap", sender: self)
     }
 
     static func setWeather(weather: Weather){

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import MapKit
+import CoreLocation
 
 class SearchView: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
@@ -16,12 +18,18 @@ class SearchView: UIViewController, UITableViewDataSource, UITableViewDelegate{
     @IBOutlet weak var tableView: UITableView!
 
     private var foundLocations = [String]()
+    private let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
         reload()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
     }
     
     func reload(){
@@ -52,7 +60,6 @@ class SearchView: UIViewController, UITableViewDataSource, UITableViewDelegate{
         performSegue(withIdentifier: "SegueSearchToMain", sender: self)
     }
 
-    
     @IBAction func AcceptButtonClicked(_ sender: Any) {
         if let text = TextField.text {
             foundLocations.append(text)
@@ -66,15 +73,4 @@ class SearchView: UIViewController, UITableViewDataSource, UITableViewDelegate{
     @IBAction func CancelButtonClicked(_ sender: Any) {
         performSegue(withIdentifier: "SegueSearchToMain", sender: self)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
